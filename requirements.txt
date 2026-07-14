@@ -14,3 +14,7 @@ shap>=0.46.0
 
 # Utilities
 joblib>=1.4.0
+
+# Visualization & notebooks
+matplotlib>=3.9.0
+jupyter>=1.1.0
