@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from model.predict import predict_with_explanation
 
 app = FastAPI(
     title="FinSecure AI",
@@ -19,3 +20,15 @@ def health():
     return {
         "status": "healthy"
     }
+
+from pydantic import BaseModel
+
+
+class PredictionRequest(BaseModel):
+    data: dict
+
+
+@app.post("/predict")
+def predict(request: PredictionRequest):
+    result = predict_with_explanation(request.data)
+    return result

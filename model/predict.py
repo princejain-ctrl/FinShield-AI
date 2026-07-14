@@ -215,7 +215,10 @@ def predict_with_explanation(
             "method": "SHAP",
             "top_contributors": shap_contributions,
         },
-        "input_features": dict(_to_dataframe(input_data).iloc[0]),
+        "input_features": {
+            k: (v.item() if hasattr(v, "item") else v)
+            for k, v in dict(_to_dataframe(input_data).iloc[0]).items()
+        },
     }
 
 
